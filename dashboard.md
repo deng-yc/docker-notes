@@ -32,7 +32,10 @@ spec:
 ```
 
 `注意: nodePort的范围只能是30000-32767,这个值在API server的配置文件中，用--service-node-port-range定义。`
-
+`可在 /etc/kubernetes/manifests/kube-apiserver.yaml 中的command中添加一下内容`
+```
+- --service-node-port-range=80-65535
+```
 获取dashboard的外网访问端口：
 
 ```
