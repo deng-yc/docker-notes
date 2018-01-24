@@ -138,3 +138,71 @@ jenkins-68c9cf9df9-82s8l            1/1       Running             0          4m
 kubectl logs jenkins-68c9cf9df9-82s8l 
 ``` 
 输出（jenkins的日志输出）
+
+配置jenkins
+
+## 配置kubernetes自动构建任务
+
+### 1.安装插件
+
+打开[系统管理]->[插件管理]
+
+找到 Kubernetes plugin 插件，点击安装并重启
+
+### 2.配置Kubernetes
+
+打开[系统管理]->[系统设置]->[新增一个云] (最底部)-> Kubernetes
+
+表单填写内容：
+
+Name：自定义,比如:kubernetes
+
+Kubernetes URL: Kubernetes apiserver 的地址加端口 比如:192.168.31.240:6443
+
+Kubernetes server certificate key:
+
+Kubernetes Namespace: 部署的命名空间 一般写default就可以
+
+Jenkins URL: jenkins的master节点地址,这里最好填写集群中的内网地址  比如 http://jenkins:8080
+
+其他字段默认即可
+
+点击 [Add Pod Template] 按钮
+
+填写表单
+
+`Name: jnlp-salve`
+
+Namespace: default
+
+labels: jnlp-salve
+
+其他字段默认
+
+点击 [Add Container] 按钮
+
+填写表单
+
+`Name: jnlp` 
+
+Docker Image: jenkinsci/jnlp-slave
+
+Working directory: /home/jenkins
+
+Command to run:   清空
+
+Arguments to pass to the command: 清空
+
+点击保存
+
+
+### 3.使用
+
+在创建自由风格任务的时候勾选
+
+Restrict where this project can be run
+
+Label Expression 中填写jnlp-slave (pod 模板名称)
+
+
+当构建的时候就会自动在集群中创建一个Pod，构建完成后Pod会被删除

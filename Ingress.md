@@ -1,0 +1,3 @@
+# 部署Ingress Controller
+Ingress Controller运行于k8s集群的容器内，既让每台node监听80和443端口，为来自集群外部的请求提供反向代理，又能实时监听集群内Ingress配置，自动更新反向代理规则。
+
