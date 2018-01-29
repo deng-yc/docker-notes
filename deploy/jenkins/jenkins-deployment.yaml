@@ -103,7 +103,6 @@ spec:
   ports:
     - port: 8080
       name: jenkins
-      nodePort: 8080
       targetPort: 8080
     - port: 50000
       name: jenkins-agent
@@ -112,3 +111,20 @@ spec:
   type: NodePort
   selector:
     k8s-app: jenkins
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+  namespace: default
+spec:
+  rules:
+  - host: jenkins.sparxotest.com	
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins
+          servicePort: 8080
+
