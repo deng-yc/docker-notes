@@ -60,7 +60,7 @@ kubeadm init --pod-network-cidr=10.244.0.0/16
 注意:--pod-network-cidr=10.244.0.0/16 是后面安装pod网络必须参数()
 `
 
-可能需要禁用swap
+如果开启swap了，需要禁用，不然无法启动
 ```
 swapoff -a
 ```

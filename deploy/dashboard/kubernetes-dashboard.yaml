@@ -17,6 +17,32 @@
 #
 # Example usage: kubectl create -f <this_file>
 
+# ------------------- Dashboard ServiceAccount ------------------- #
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: admin
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: admin
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin
+  namespace: kube-system
+  labels:
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+
 # ------------------- Dashboard Secret ------------------- #
 
 apiVersion: v1
@@ -119,8 +145,8 @@ spec:
         - containerPort: 8443
           protocol: TCP
         args:
-          - --tls-key-file=dashboard.key
-          - --tls-cert-file=dashboard.crt
+          - --tls-key-file=server.key
+          - --tls-cert-file=server.crt
         volumeMounts:
         - name: kubernetes-dashboard-certs
           mountPath: /certs
@@ -137,8 +163,8 @@ spec:
       volumes:
       - name: kubernetes-dashboard-certs
         nfs:
-          server: 192.168.31.245
-          path: "/kube_nfs_home/kube_certs"
+          server: 192.168.31.240
+          path: "/data/dashboard_certs"
       - name: tmp-volume
         emptyDir: {}
       serviceAccountName: kubernetes-dashboard
