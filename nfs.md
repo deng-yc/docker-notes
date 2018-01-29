@@ -18,7 +18,7 @@ sudo dpkg-reconfigure portmap 选择"否"
 ## 3.配置共享目录
 
 ```
-mkdir /kube_nfs_home
+mkdir /data
 ```
 
 ```
@@ -26,7 +26,7 @@ sudo vi /etc/exports
 ```
 内容
 ```
-/kube_nfs_home *(rw,sync,no_root_squash)
+/data *(rw,sync,no_root_squash)
 ```
 参数说明
 ```

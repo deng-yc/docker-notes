@@ -37,8 +37,8 @@ spec:
       volumes:
       - name: docker-registry-storage
         nfs:
-          server: 192.168.31.245
-          path: "/kube_nfs_home/repos"
+          server: 192.168.31.240
+          path: "/data/repos"
 ---
 # ------------------- docker-registry Service ------------------- #
 kind: Service
