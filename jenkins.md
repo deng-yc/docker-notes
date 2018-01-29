@@ -6,7 +6,7 @@
 
 内容
 ```
-
+#-------------Jenkins ServiceAccount 授权jenkins访问集群的账号--------------#
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -14,8 +14,8 @@ metadata:
     k8s-app: jenkins
   name: jenkins-admin
   namespace: default
-
 ---
+#-------------Jenkins ClusterRoleBinding 授权jenkins访问集群的账号角色和权限--------------#
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -49,7 +49,7 @@ rules:
     - services
   verbs: ["get", "list", "watch"]
 ---
-
+#-------------Jenkins Deployment 部署jenkins配置--------------#
 kind: Deployment
 apiVersion: apps/v1beta2
 metadata:
@@ -95,6 +95,8 @@ spec:
       serviceAccount: "jenkins-admin"
 
 ---
+#-------------Jenkins Service 部署jenkins服务--------------#
+
 kind: Service
 apiVersion: v1
 metadata:

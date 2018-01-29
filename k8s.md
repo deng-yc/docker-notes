@@ -64,6 +64,11 @@ kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 swapoff -a
 ```
+开机禁用swap 
+```
+vi /etc/fstab
+```
+注释swap的代码
 
 执行初始化后,得到一下输出内容
 ```

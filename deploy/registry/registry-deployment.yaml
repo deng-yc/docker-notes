@@ -1,0 +1,107 @@
+
+# docker 镜像仓库和管理界面
+
+# ------------------- docker-registry Deployment ------------------- #
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  labels:
+    k8s-app: hicoin-registry
+  name: hicoin-registry
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: hicoin-registry
+  template:
+    metadata:
+      labels:
+        k8s-app: hicoin-registry
+    spec:
+      containers:
+      - name: hicoin-registry
+        image: registry
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        #args:          
+        #  - --auto-generate-certificates
+
+        #   - --tls-key-file=dashboard.key
+        #   - --tls-cert-file=dashboard.crt 
+        volumeMounts:
+        - name: docker-registry-storage 
+          mountPath: /var/lib/registry
+      volumes:
+      - name: docker-registry-storage
+        nfs:
+          server: 192.168.31.245
+          path: "/kube_nfs_home/repos"
+---
+# ------------------- docker-registry Service ------------------- #
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: hicoin-registry
+  name: hicoin-registry
+  namespace: default
+spec:  
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 5000
+  selector:
+    k8s-app: hicoin-registry
+
+---
+# ------------------- docker-registry Deployment ------------------- #
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  labels:
+    k8s-app: hicoin-registry-web
+  name: hicoin-registry-web
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: hicoin-registry-web
+  template:
+    metadata:
+      labels:
+        k8s-app: hicoin-registry-web
+    spec:
+      containers:
+      - name: hicoin-registry-web
+        image: konradkleine/docker-registry-frontend:v2
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+          - name: ENV_DOCKER_REGISTRY_HOST
+            value: "hicoin-registry"
+          - name: ENV_DOCKER_REGISTRY_PORT
+            value: "5000"
+---
+# ------------------- docker-registry Service ------------------- #
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: hicoin-registry-web
+  name: hicoin-registry-web
+  namespace: default
+spec:  
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 80
+      nodePort: 8080
+  selector:
+    k8s-app: hicoin-registry-web
