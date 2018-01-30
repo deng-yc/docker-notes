@@ -164,7 +164,22 @@ spec:
   ports:
     - port: 443
       targetPort: 8443
-      nodePort: 9090
   selector:
     k8s-app: kubernetes-dashboard
-  type: NodePort
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: default
+spec:
+  rules:
+  - host: dashboard.sparxotest.com	
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 8443
