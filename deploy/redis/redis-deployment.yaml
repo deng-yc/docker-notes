@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    k8s-app: redis
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: redis
+    spec:
+      containers:
+      - image: redis:5.6
+        name: redis
+        env:
+          # $ kubectl create secret generic mysql-pass --from-file=password.txt
+          # make sure password.txt does not have a trailing newline
+        - name: MYSQL_ROOT_PASSWORD
+          value: "hicoindev*!*"
+        ports:
+        - containerPort: 3306
+          name: redis
+        volumeMounts: 
+          - name: redis-storage 
+            mountPath: /var/lib/mysql      
+      volumes: 
+        - name: redis-storage 
+          nfs:
+            server: 192.168.31.240
+            path: /data/redis 
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: redis 
+  labels: 
+    k8s-app: redis
+spec: 
+  type: NodePort
+  ports: 
+    - port: 3306 
+      targetPort: 3306
+      nodePort: 3306 
+  selector: 
+    k8s-app: redis 
