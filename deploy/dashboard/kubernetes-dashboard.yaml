@@ -164,8 +164,10 @@ spec:
   ports:
     - port: 443
       targetPort: 8443
+      nodePort: 9090
   selector:
     k8s-app: kubernetes-dashboard
+  type: NodePort
 
 
 ---
@@ -182,4 +184,4 @@ spec:
       - path: /
         backend:
           serviceName: kubernetes-dashboard
-          servicePort: https
+          servicePort: 8443

@@ -113,3 +113,9 @@ token:        非常长的字符串
 使用这个token登录dashboard
 
 参考: [Kubernetes 中的认证](https://kubernetes.io/docs/admin/authentication/)
+
+
+
+```
+kubectl create secret tls ingress-secret --key cert/ingress-key.pem --cert cert/ingress.pem
+```
