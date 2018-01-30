@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    k8s-app: mysql
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+          # $ kubectl create secret generic mysql-pass --from-file=password.txt
+          # make sure password.txt does not have a trailing newline
+        - name: MYSQL_ROOT_PASSWORD
+          value: "hicoindev*!*"
+        ports:
+        - containerPort: 3306
+          name: mysql
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: mysql 
+  labels: 
+    k8s-app: mysql
+spec: 
+  type: NodePort
+  ports: 
+    - port: 3306 
+      targetPort: 3306
+      nodePort: 3306 
+  selector: 
+    name: mysql 
