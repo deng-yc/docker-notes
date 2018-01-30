@@ -23,6 +23,14 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
+        volumeMounts: 
+          - name: mysql-storage 
+            mountPath: /var/lib/mysql      
+      volumes: 
+        - name: mysql-storage 
+          nfs:
+            server: 192.168.31.240
+            path: /data/mysql 
 ---
 
 apiVersion: v1 
