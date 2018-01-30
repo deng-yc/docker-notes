@@ -171,17 +171,17 @@ spec:
 
 
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: dashboard-ingress
-  namespace: default
-spec:
-  rules:
-  - host: dashboard.sparxotest.com	
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: kubernetes-dashboard
-          servicePort: 8443
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: dashboard-ingress
+#   namespace: default
+# spec:
+#   rules:
+#   - host: dashboard.sparxotest.com	
+#     http:
+#       paths:
+#       - path: /
+#         backend:
+#           serviceName: kubernetes-dashboard
+#           servicePort: 8443
