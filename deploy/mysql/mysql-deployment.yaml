@@ -37,9 +37,9 @@ spec:
         volumeMounts: 
           - name: mysql-storage 
             mountPath: /var/lib/mysql  
-          - name: config
-            mountPath: /etc/mysql/conf.d/            
-            readOnly: true
+          # - name: config
+          #   mountPath: /etc/mysql/conf.d/
+          #   readOnly: true
       volumes: 
         - name: mysql-storage 
           nfs:
@@ -47,7 +47,7 @@ spec:
             path: /data/mysql/data 
         - name: config
           configMap:
-            name: mysql-config       
+            name: mysql-config
 ---
 
 apiVersion: v1 
