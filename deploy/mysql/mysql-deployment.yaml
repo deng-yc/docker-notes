@@ -47,7 +47,7 @@ spec:
             path: /data/mysql/data 
         - name: config
           configMap:
-          name: mysql-config       
+            name: mysql-config       
 ---
 
 apiVersion: v1 
