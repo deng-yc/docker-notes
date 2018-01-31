@@ -27,7 +27,7 @@ spec:
           - name: mysql-storage 
             mountPath: /var/lib/mysql  
           - name: mysql-conf 
-            mountPath: /etc/mysql/my.conf
+            mountPath: /etc/mysql/my.cnf
       volumes: 
         - name: mysql-storage 
           nfs:
@@ -36,7 +36,7 @@ spec:
         - name: mysql-conf 
           nfs:
             server: 192.168.31.240
-            path: /data/mysql/conf/my.conf
+            path: /data/mysql/conf/my.cnf
 ---
 
 apiVersion: v1 
