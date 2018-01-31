@@ -7,7 +7,7 @@ data:
     [mysqld]
     skip-host-cache
     skip-name-resolve
-    lower_case_table_names=2
+    lower_case_table_names=1
 ---
 
 apiVersion: extensions/v1beta1
