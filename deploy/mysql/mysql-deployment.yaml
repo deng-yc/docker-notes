@@ -8,7 +8,6 @@ data:
     skip-host-cache
     skip-name-resolve
     lower_case_table_names=1
-
 ---
 
 apiVersion: extensions/v1beta1
@@ -34,7 +33,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: "hicoindev*!*"
         ports:
-        - containerPort: 3306
+        - containerPort: 3306 
           name: mysql
         volumeMounts: 
           - name: mysql-storage 
