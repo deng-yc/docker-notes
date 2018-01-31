@@ -11,3 +11,9 @@ kubectl create -f ./jenkins/jenkins-deployment.yaml
 kubectl create -f ./registry/registry-deployment.yaml
 
 
+kubectl create -f ./mysql/mysql-deployment.yaml
+kubectl create -f ./mongodb/mongodb-deployment.yaml
+kubectl create -f ./redis/redis-deployment.yaml
+
+
+
