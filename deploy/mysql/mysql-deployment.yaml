@@ -36,16 +36,15 @@ spec:
         - containerPort: 3306 
           name: mysql
         volumeMounts: 
-          - name: mysql-storage 
+          - name: nfs 
             mountPath: /var/lib/mysql  
           - name: config
             mountPath: /etc/mysql/conf.d/
             readOnly: true
       volumes: 
-        - name: mysql-storage 
-          nfs:
-            server: 192.168.31.240
-            path: /data/mysql/data 
+        - name: nfs
+          persistentVolumeClaim:
+            claimName: nfs
         - name: config
           configMap:
             name: mysql-config

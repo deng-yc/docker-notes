@@ -4,10 +4,22 @@ metadata:
   name: nfs
 spec:
   capacity:
-    storage: 1Mi
+    storage: 20Gi
   accessModes:
     - ReadWriteMany
   nfs:
     # FIXME: use the right IP
     server: 192.168.31.240
-    path: "/exports"
+    path: "/data"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
