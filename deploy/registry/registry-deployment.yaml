@@ -98,9 +98,11 @@ metadata:
   name: hicoin-registry-web
   namespace: default
 spec:  
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 8090
   selector:
     k8s-app: hicoin-registry-web
 
@@ -113,7 +115,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: registry.sparxotest.com	
+  - host: registry.hicoin.io	
     http:
       paths:
       - path: /
