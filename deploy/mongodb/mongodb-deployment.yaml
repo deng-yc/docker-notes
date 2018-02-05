@@ -22,10 +22,11 @@ spec:
             - name: mongo-nfs-storage
               mountPath: /data/db
       volumes:
-        - name: mongo-nfs-storage
-          nfs:
-            server: 192.168.31.240
-            path: /data/mongodb 
+      - name: mongo-nfs-storage
+        awsElasticBlockStore:
+          # Enter the volume ID below
+          volumeID: vol-0580491e810a5751d
+          fsType: ext4
             
 ---
 
@@ -36,10 +37,8 @@ metadata:
     name: mongo
   name: mongo
 spec:
-  type: NodePort
   ports:
     - port: 27017
       targetPort: 27017
-      nodePort: 27017
   selector:
     name: mongo

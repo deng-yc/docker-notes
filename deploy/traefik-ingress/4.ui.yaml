@@ -5,12 +5,14 @@ metadata:
   name: traefik-web-ui
   namespace: kube-system
 spec:
+  type: NodePort
   selector:
     k8s-app: traefik-ingress-lb
   ports:
   - name: web
     port: 80
     targetPort: 8080
+    nodePort: 31010
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -19,7 +21,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: ui.sparxotest.com
+  - host: ingress.hicoin.io
     http:
       paths:
       - path: /

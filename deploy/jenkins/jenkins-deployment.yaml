@@ -60,6 +60,7 @@ spec:
       labels:
         k8s-app: jenkins
     spec:
+      nodeName: ip-172-20-51-20.ap-northeast-1.compute.internal
       containers:
       - name: jenkins
         image: dengyc/jenkins
@@ -76,9 +77,8 @@ spec:
           mountPath: /var/run/docker.sock    
       volumes:
       - name: jenkinshome
-        nfs:
-          server: 192.168.31.240
-          path: "/data/jenkins_home"
+        hostPath:
+          path: "/var/jenkins_home"
       - name: docker
         hostPath:
           path: "/usr/bin/docker"
@@ -100,27 +100,31 @@ metadata:
   annotations:
     prometheus.io/scrape: 'true'
 spec:
+  type: NodePort
   ports:
     - port: 8080
       name: jenkins
       targetPort: 8080
+      nodePort: 31000
     - port: 50000
       name: jenkins-agent
-      nodePort: 50000
       targetPort: 50000
   type: NodePort
   selector:
     k8s-app: jenkins
 
 ---
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: jenkins-ingress
   namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internal
 spec:
   rules:
-  - host: jenkins.sparxotest.com	
+  - host: ci.hicoin.io	
     http:
       paths:
       - path: /

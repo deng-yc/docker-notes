@@ -115,7 +115,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: registry.hicoin.io	
+  - host: hub.hicoin.io	
     http:
       paths:
       - path: /
