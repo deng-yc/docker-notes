@@ -19,13 +19,13 @@ spec:
           containerPort: 27017
           hostPort: 27017
         volumeMounts:
-            - name: mongo-nfs-storage
+            - name: mongo-ebs-storage
               mountPath: /data/db
       volumes:
-      - name: mongo-nfs-storage
+      - name: mongo-ebs-storage
         awsElasticBlockStore:
           # Enter the volume ID below
-          volumeID: vol-0580491e810a5751d
+          volumeID: vol-0111b6557d9733a49
           fsType: ext4
             
 ---
