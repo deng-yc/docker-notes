@@ -1,0 +1,123 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-broker-config
+data:
+  appsettings.json: |
+    {
+      "EQueue": {
+        "BrokerStorePath": "/data/hicoin-equeue-store",
+        "NameServerAddress": "hicoin-nameserver:10000"
+      }
+    }
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-web-equeue-config
+data:
+  appsettings.json: |
+    {
+      "EQueue": {
+        "NameServerAddress": "hicoin-nameserver:10000"
+      }
+    }
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-chat-processorhost-config
+data:
+  appsettings.json: |
+    {
+      "ENode": {
+        "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+      },
+      "EQueue": {
+        "NameServerAddress": "hicoin-nameserver:10000"
+      },
+      "MongoDb": {
+        "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
+        "DatabaseName": "hicoin-chat"
+      },
+      "Redis": {
+        "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "DatabaseId": "1"
+      }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-chat-web-config
+data:
+  appsettings.json: |
+    {
+      "ENode": {
+        "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+      },
+      "EQueue": {
+        "NameServerAddress": "hicoin-nameserver:10000"
+      },
+      "MongoDb": {
+        "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
+        "DatabaseName": "hicoin-chat"
+      },
+      "Redis": {
+        "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "DatabaseId": "1"
+      }
+    }
+
+---
+
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-cms-processorhost-config
+data:
+  appsettings.json: |
+    {
+      "ENode": {
+        "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+      },
+      "EQueue": {
+        "NameServerAddress": "hicoin-nameserver:10000"
+      },
+      "MongoDb": {
+        "ConnectionString": "mongodb://mongo:27017/hicoin-content",
+        "DatabaseName": "hicoin-content"
+      },
+      "Redis": {
+        "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "DatabaseId": "1"
+      }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-cms-api-config
+data:
+  appsettings.json: |
+    {
+      "ENode": {
+        "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+      },
+      "EQueue": {
+        "NameServerAddress": "hicoin-nameserver:10000"
+      },
+      "MongoDb": {
+        "ConnectionString": "mongodb://mongo:27017/hicoin-content",
+        "DatabaseName": "hicoin-content"
+      },
+      "Redis": {
+        "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "DatabaseId": "1"
+      }
+    }
