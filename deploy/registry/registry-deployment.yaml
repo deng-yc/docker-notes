@@ -72,12 +72,12 @@ metadata:
   name: hicoin-registry-ingress
   namespace: default
 spec:
-  tls:
-  - hosts:
-    - registry-1.hicoin.io
-    secretName: hicoin-registry-secret
+  # tls:
+  # - hosts:
+  #   - registry-1.hicoin.io
+  #   secretName: hicoin-registry-secret
   rules:
-  - host: registry-1.hicoin.io
+  - host: k8s-registry.hicoin.io
     http:
       paths:
       - path: /
@@ -141,7 +141,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: hub.hicoin.io	
+  - host: k8s-hub.hicoin.io	
     http:
       paths:
       - path: /
