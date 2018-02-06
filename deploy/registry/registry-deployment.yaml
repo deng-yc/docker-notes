@@ -20,6 +20,7 @@ spec:
       labels:
         k8s-app: hicoin-registry
     spec:
+      nodeName: ip-172-20-56-105.ap-northeast-1.compute.internal
       containers:
       - name: hicoin-registry
         image: registry

@@ -60,7 +60,7 @@ spec:
       labels:
         k8s-app: jenkins
     spec:
-      nodeName: ip-172-20-53-141.ap-northeast-1.compute.internal
+      nodeName: ip-172-20-56-105.ap-northeast-1.compute.internal
       containers:
       - name: jenkins
         image: dengyc/jenkins
