@@ -20,8 +20,9 @@ spec:
       labels:
         k8s-app: hicoin-registry
     spec:
-      nodeSelector: 
-        failure-domain.beta.kubernetes.io/zone: ap-northeast-1a
+      #nodeSelector: 
+      #  failure-domain.beta.kubernetes.io/zone: ap-northeast-1a
+      nodeName: ip-172-20-56-105.ap-northeast-1.compute.internal
       containers:
       - name: hicoin-registry
         image: registry
