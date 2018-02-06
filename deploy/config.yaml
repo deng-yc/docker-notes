@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: messagebroker-config
+  name: hicoin-broker-config
 data:
   appsettings.json: |
     {
       "EQueue": {
         "BrokerStorePath": "/data/hicoin-equeue-store",
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       }
     }
 
@@ -16,12 +16,12 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: messageadminweb-config
+  name: hicoin-web-equeue-config
 data:
   appsettings.json: |
     {
       "EQueue": {
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       }
     }
 
@@ -37,7 +37,7 @@ data:
         "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
@@ -60,7 +60,7 @@ data:
         "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
@@ -73,10 +73,13 @@ data:
     }
 
 ---
+
+
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hicoin-content-processorhost-config
+  name: hicoin-cms-processorhost-config
 data:
   appsettings.json: |
     {
@@ -84,7 +87,7 @@ data:
         "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://mongo:27017/hicoin-content",
@@ -99,7 +102,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hicoin-content-config
+  name: hicoin-cms-api-config
 data:
   appsettings.json: |
     {
@@ -107,7 +110,7 @@ data:
         "EventStoreConnectionString": "Datasource=mysql;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "messagenameserver:10000"
+        "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://mongo:27017/hicoin-content",
