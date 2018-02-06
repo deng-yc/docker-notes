@@ -100,12 +100,10 @@ metadata:
   annotations:
     prometheus.io/scrape: 'true'
 spec:
-  type: NodePort
   ports:
     - port: 8080
       name: jenkins
       targetPort: 8080
-      nodePort: 31000
     - port: 50000
       name: jenkins-agent
       targetPort: 50000
