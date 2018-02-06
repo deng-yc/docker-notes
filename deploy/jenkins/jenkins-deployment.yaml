@@ -60,7 +60,8 @@ spec:
       labels:
         k8s-app: jenkins
     spec:
-      nodeName: ip-172-20-56-105.ap-northeast-1.compute.internal
+      nodeSelector: 
+        failure-domain.beta.kubernetes.io/zone: ap-northeast-1d
       containers:
       - name: jenkins
         image: dengyc/jenkins
@@ -77,8 +78,9 @@ spec:
           mountPath: /var/run/docker.sock    
       volumes:
       - name: jenkinshome
-        hostPath:
-          path: "/var/jenkins_home"
+        awsElasticBlockStore:
+          volumeID: vol-0ed88fca0ca741930
+          fsType: ext4
       - name: docker
         hostPath:
           path: "/usr/bin/docker"

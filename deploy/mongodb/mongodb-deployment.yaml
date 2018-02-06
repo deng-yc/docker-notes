@@ -28,7 +28,6 @@ spec:
       volumes:
       - name: mongo-ebs-storage
         awsElasticBlockStore:
-          # Enter the volume ID below
           volumeID: vol-0a3b91a628bc5e3bb
           fsType: ext4
             
