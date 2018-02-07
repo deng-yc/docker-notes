@@ -76,10 +76,10 @@ metadata:
   name: hicoin-registry-ingress
   namespace: kube-system
 spec:
-  # tls:
-  # - hosts:
-  #   - registry-1.hicoin.io
-  #   secretName: hicoin-registry-secret
+  tls:
+  - hosts:
+    - k8s-registry.hicoin.io
+    secretName: hicoin-registry-secret
   rules:
   - host: k8s-registry.hicoin.io
     http:

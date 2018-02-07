@@ -75,10 +75,10 @@ spec:
         volumeMounts:
         - name: jenkinshome
           mountPath: /var/jenkins_home
-        - name: docker
-          mountPath: /bin/docker
+        - name: usrdocker
+          mountPath: /usr/bin/docker      
         - name: dockersock
-          mountPath: /var/run/docker.sock    
+          mountPath: /var/run/docker.sock   
       volumes:
       - name: jenkinshome
         #hostPath:
@@ -86,9 +86,9 @@ spec:
         awsElasticBlockStore:
           volumeID: vol-09bb49cfb14a38ced
           fsType: ext4
-      - name: docker
+      - name: usrdocker
         hostPath:
-          path: "/usr/bin/docker"
+          path: "/run/torcx/bin/docker"      
       - name: dockersock
         hostPath:
           path: "/var/run/docker.sock"
