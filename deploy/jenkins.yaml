@@ -60,8 +60,11 @@ spec:
       labels:
         k8s-app: jenkins
     spec:
-      nodeSelector: 
-        kubernetes.io/role: master
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      nodeSelector:  
+        node-role.kubernetes.io/master: ""
       containers:
       - name: jenkins
         image: dengyc/jenkins
@@ -78,6 +81,8 @@ spec:
           mountPath: /var/run/docker.sock    
       volumes:
       - name: jenkinshome
+        #hostPath:
+        #  path: "/tmp/jenkins_home"
         awsElasticBlockStore:
           volumeID: vol-09bb49cfb14a38ced
           fsType: ext4
