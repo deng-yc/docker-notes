@@ -6,7 +6,7 @@ metadata:
   labels:
     k8s-app: jenkins
   name: jenkins-admin
-  namespace: default
+  namespace: kube-system
 ---
 #-------------Jenkins ClusterRoleBinding 授权jenkins访问集群的账号角色和权限--------------#
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -22,7 +22,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: jenkins-admin
-  namespace: default
+  namespace: kube-system
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -47,7 +47,7 @@ kind: Deployment
 apiVersion: apps/v1beta2
 metadata:
   name: jenkins
-  namespace: default
+  namespace: kube-system
   labels:
     k8s-app: jenkins
 spec:
@@ -61,7 +61,7 @@ spec:
         k8s-app: jenkins
     spec:
       nodeSelector: 
-        failure-domain.beta.kubernetes.io/zone: ap-northeast-1d
+        kubernetes.io/role: master
       containers:
       - name: jenkins
         image: dengyc/jenkins
@@ -79,7 +79,7 @@ spec:
       volumes:
       - name: jenkinshome
         awsElasticBlockStore:
-          volumeID: vol-0ed88fca0ca741930
+          volumeID: vol-09bb49cfb14a38ced
           fsType: ext4
       - name: docker
         hostPath:
@@ -98,7 +98,7 @@ metadata:
   labels:
     k8s-app: jenkins
   name: jenkins
-  namespace: default
+  namespace: kube-system
   annotations:
     prometheus.io/scrape: 'true'
 spec:
@@ -119,7 +119,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: jenkins-ingress
-  namespace: default
+  namespace: kube-system
   annotations:
     alb.ingress.kubernetes.io/scheme: internal
 spec:

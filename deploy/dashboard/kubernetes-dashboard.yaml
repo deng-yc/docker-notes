@@ -101,7 +101,12 @@ spec:
       labels:
         k8s-app: kubernetes-dashboard
     spec:
-      nodeName: ip-172-20-56-105.ap-northeast-1.compute.internal
+      #nodeName: ip-172-20-61-132.ap-northeast-1.compute.internal
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      nodeSelector:  
+        node-role.kubernetes.io/master: ""
       containers:
       - name: kubernetes-dashboard
         image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.2
