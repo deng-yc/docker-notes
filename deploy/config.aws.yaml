@@ -125,7 +125,7 @@ data:
   appsettings.json: |
     {
       "AppSettings": {
-        "MySqlConnStr": "server=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;User Id=root;Password=123456;Persist Security Info=True;database=highcoinidentity;pooling=true;Min Pool Size=20;Max Pool Size=100;",
+        "MySqlConnStr": "server=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;User Id=root;Password=hicoindev*!*;Persist Security Info=True;database=highcoinidentity;pooling=true;Min Pool Size=20;Max Pool Size=100;",
         "AuthorityHost": "http://identity.hicoin.io"
       },
     
