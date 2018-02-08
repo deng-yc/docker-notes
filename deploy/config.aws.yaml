@@ -66,6 +66,9 @@ data:
       "Redis": {
         "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
         "DatabaseId": "1"
+      },
+      "HicoinIdentity": {
+        "Host": "http://identity.hicoin.io/"
       }
     }
 
@@ -113,6 +116,10 @@ data:
       "Redis": {
         "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
         "DatabaseId": "1"
+      },
+      "HicoinIdentity": {
+        "Host": "http://identity.hicoin.io/",  
+        "TokenUrl": "http://identity.hicoin.io/connect/token"
       }
     }
 
