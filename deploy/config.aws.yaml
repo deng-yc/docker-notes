@@ -115,3 +115,27 @@ data:
         "DatabaseId": "1"
       }
     }
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-identity-config
+data:
+  appsettings.json: |
+    {
+      "AppSettings": {
+        "MySqlConnStr": "server=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;User Id=root;Password=123456;Persist Security Info=True;database=highcoinidentity;pooling=true;Min Pool Size=20;Max Pool Size=100;",
+        "AuthorityHost": "http://identity.hicoin.io"
+      },
+    
+      "Exceptionless": {
+        "ApiKey": "jFqUOPjlbfs3X0ZA8AVFojxGExDWssapvpmUkgtW",
+        "ServerUrl": "http://exception-console.hicoin.io"
+      },
+    
+      "Redis": {
+        "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "DatabaseId": "1"
+      }
+    }
