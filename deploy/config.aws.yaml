@@ -40,7 +40,7 @@ data:
         "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
         "DatabaseName": "hicoin-chat"
       },
       "Redis": {
@@ -63,7 +63,7 @@ data:
         "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://mongo:27017/hicoin-chat",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
         "DatabaseName": "hicoin-chat"
       },
       "Redis": {
@@ -90,7 +90,7 @@ data:
         "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://mongo:27017/hicoin-content",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
         "DatabaseName": "hicoin-content"
       },
       "Redis": {
@@ -113,7 +113,7 @@ data:
         "NameServerAddress": "hicoin-nameserver:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://mongo:27017/hicoin-content",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
         "DatabaseName": "hicoin-content"
       },
       "Redis": {
