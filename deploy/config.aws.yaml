@@ -56,9 +56,6 @@ metadata:
 data:
   appsettings.json: |
     {
-      "ENode": {
-        "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
-      },
       "EQueue": {
         "NameServerAddress": "hicoin-nameserver:10000"
       },
@@ -106,9 +103,6 @@ metadata:
 data:
   appsettings.json: |
     {
-      "ENode": {
-        "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
-      },
       "EQueue": {
         "NameServerAddress": "hicoin-nameserver:10000"
       },
