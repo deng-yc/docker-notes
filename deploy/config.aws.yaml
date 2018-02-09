@@ -1,13 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hicoin-broker-config
+  name: hicoin-broker-config-1
 data:
   appsettings.json: |
     {
       "EQueue": {
         "BrokerStorePath": "/data/hicoin-equeue-store",
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000",
+        "BrokerAdminPort": "10003",
+        "BrokerConsumerPort": "10002",
+        "BrokerProducerPort": "10001"
       }
     }
 
@@ -21,7 +24,7 @@ data:
   appsettings.json: |
     {
       "EQueue": {
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       }
     }
 
@@ -37,7 +40,7 @@ data:
         "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
@@ -57,7 +60,7 @@ data:
   appsettings.json: |
     {
       "EQueue": {
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
@@ -87,7 +90,7 @@ data:
         "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
       },
       "EQueue": {
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
@@ -107,7 +110,7 @@ data:
   appsettings.json: |
     {
       "EQueue": {
-        "NameServerAddress": "hicoin-nameserver:10000"
+        "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
         "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
@@ -146,3 +149,99 @@ data:
         "DatabaseId": "1"
       }
     }
+
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-cryptocomparefetcher-config
+data:
+  appsettings.json: |
+    {
+      "Appsetings": {
+        "RedisConnStr": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+      },    
+      "RabbitMq": {
+        "Host": "rabbitmq",
+        "Password": "hicoin*rabbitmq*dev*!*",
+        "Port": "5672",
+        "UserName": "hicoin",
+        "VirtualHost": "/"
+      }
+    }
+  
+---
+  
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-subscription-manager-config
+data:
+  appsettings.json: |
+    {
+        "Appsetings": {
+          "MysqlConnStr": "server=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;User Id=root;Password=hicoindev*!*;Persist Security Info=True;database=subscriptionmanager;pooling=true;Min Pool Size=20;Max Pool Size=100;",
+          "RedisConnStr": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+          "EqueueStorePath": "equeue-store",
+          "AlertSettings": {
+            "MaxPushTimes": 3,
+            "PushInterval": 10, 
+            "RestInterval": 60
+          }
+        },
+
+        "RabbitMq": {
+          "Host": "rabbitmq",
+          "Password": "hicoin*rabbitmq*dev*!*",
+          "Port": "5672",
+          "UserName": "hicoin",
+          "VirtualHost": "/"
+        },
+
+        "Exceptionless": {
+          "ApiKey": "UyLkAnpDKLiPBqt59d701BtZwETBX9NedSwnTdQR",
+          "ServerUrl": "http://exception-console.hicoin.io"
+        }
+    }
+
+---
+  
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-subscription-processorhost-config
+data:
+  appsettings.json: |
+    {
+      "Appsetings": {
+      "AuthorityUrl": "http://hicoin-identity:80",
+      "AlertRestUrl": "http://hicoin-subscription-manager:5800/1/alert/all",
+      "DeviceRestUrl": "http://hicoin-subscription-manager:5800/1/device",
+      "AlertSettings": {
+        "MaxPushTimes": 3,
+        "PushInterval": 10, 
+        "RestInterval": 60 
+      },
+      "AliPush": {
+        "AppKey": 24783407,
+        "AccessKeyId": "LTAIaqBVK8KLbiRw",
+        "AccessKeySecret": "3P5D2eghOvylXbFhzOgBgO6ko0b39l",
+        "Env": "DEV"
+      }
+      },
+
+      "RabbitMq": {
+        "Host": "rabbitmq",
+        "Password": "hicoin*rabbitmq*dev*!*",
+        "Port": "5672",
+        "UserName": "hicoin",
+        "VirtualHost": "/"
+      }
+    }
+
+
+
+
+    
