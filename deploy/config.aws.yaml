@@ -216,7 +216,7 @@ data:
   appsettings.json: |
     {
       "Appsetings": {
-      "AuthorityUrl": "http://hicoin-identity:80",
+      "AuthorityUrl": "http://identity.hicoin.io",
       "AlertRestUrl": "http://hicoin-subscription-manager:5800/1/alert/all",
       "DeviceRestUrl": "http://hicoin-subscription-manager:5800/1/device",
       "AlertSettings": {
