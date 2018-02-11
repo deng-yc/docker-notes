@@ -220,9 +220,9 @@ data:
       "AlertRestUrl": "http://hicoin-subscription-manager:5800/1/alert/all",
       "DeviceRestUrl": "http://hicoin-subscription-manager:5800/1/device",
       "AlertSettings": {
-        "MaxPushTimes": 3,
+        "MaxPushTimes": 1,
         "PushInterval": 10, 
-        "RestInterval": 60 
+        "RestInterval": 86400 
       },
       "AliPush": {
         "AppKey": 24783407,
@@ -242,6 +242,30 @@ data:
     }
 
 
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-newsfetcher-config
+data:
+  appsettings.json: |
+    {
+      "Appsetings": {
+        "GoogleApiKey": "AIzaSyCriKjZiR3JQfUVdCHdr7UbmYne87DXlyg",
+        "SearchEngineId": "005122415579583925549:8ohmhkyjzbe",
+        "WebFetchCount": 100,
+        "VideoFetchCount": 100,
+        "FetchInterVal": 6, 
+        "UnionKeywords": "cryptocurrency",
+        "CmsRestUrl": "http://hicoin-cms-api:5001",
+        "AuthorityUrl": "http://identity.hicoin.io",
+        "CoinsUrl": "http://hicoin-subscription-manager:5800/1/markets/coins"
+      }
+    }
+
+  
 
 
     

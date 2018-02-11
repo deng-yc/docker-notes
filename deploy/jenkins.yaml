@@ -69,11 +69,6 @@ spec:
       - name: jenkins
         image: dengyc/jenkins
         imagePullPolicy: Always
-        resources:
-          limits:
-            memory: "400Mi"
-          requests:
-            memory: "100Mi"
         ports:
         - containerPort: 8080
         - containerPort: 50000
