@@ -37,13 +37,16 @@ data:
   appsettings.json: |
     {
       "ENode": {
-        "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_chat_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+        "EventStoreConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-chat-eventstore?maxPoolSize=200",
+        "EventStoreDatabaseName": "hicoin-chat-eventstore",
+        "LockServiceConnectionString": "redis-master:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "LockServiceDatabaseId": "1"
       },
       "EQueue": {
         "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-chat?maxPoolSize=200",
         "DatabaseName": "hicoin-chat"
       },
       "Redis": {
@@ -63,7 +66,7 @@ data:
         "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-chat",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-chat?maxPoolSize=200",
         "DatabaseName": "hicoin-chat"
       },
       "Redis": {
@@ -87,13 +90,16 @@ data:
   appsettings.json: |
     {
       "ENode": {
-        "EventStoreConnectionString": "Datasource=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;Database=hicoin_content_eventstore;uid=root;pwd=hicoindev*!*;Allow User Variables=True;"
+        "EventStoreConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-content-eventstore?maxPoolSize=200",
+        "EventStoreDatabaseName": "hicoin-content-eventstore",
+        "LockServiceConnectionString": "redis-master:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "LockServiceDatabaseId": "1"
       },
       "EQueue": {
         "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-content?maxPoolSize=200",
         "DatabaseName": "hicoin-content"
       },
       "Redis": {
@@ -113,7 +119,7 @@ data:
         "NameServerAddress": "ip-172-20-75-238.ap-northeast-1.compute.internal:10000"
       },
       "MongoDb": {
-        "ConnectionString": "mongodb://hicoin:hicoindev*!*@mongo:27017/hicoin-content",
+        "ConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-content?maxPoolSize=200",
         "DatabaseName": "hicoin-content"
       },
       "Redis": {
@@ -181,30 +187,44 @@ metadata:
 data:
   appsettings.json: |
     {
-        "Appsetings": {
-          "MysqlConnStr": "server=hicoin-mysql-1.ctbumckqplbr.ap-northeast-1.rds.amazonaws.com;User Id=root;Password=hicoindev*!*;Persist Security Info=True;database=subscriptionmanager;pooling=true;Min Pool Size=20;Max Pool Size=100;",
-          "RedisConnStr": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
-          "EqueueStorePath": "equeue-store",
-          "AlertSettings": {
-            "MaxPushTimes": 3,
-            "PushInterval": 10, 
-            "RestInterval": 60
-          }
+      "Appsetings": {
+        "MysqlConnStr": "",
+        "EqueueStorePath": "equeue-store",
+        "AlertSettings": {
+          "MaxPushTimes": 3,
+          "PushInterval": 10, 
+          "RestInterval": 60
         },
-
-        "RabbitMq": {
-          "Host": "rabbitmq",
-          "Password": "hicoin*rabbitmq*dev*!*",
-          "Port": "5672",
-          "UserName": "hicoin",
-          "VirtualHost": "/"
+        "ENode": {
+          "EventStoreConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-subscription-eventstore?maxPoolSize=200",
+          "EventStoreDatabaseName": "hicoin-subscription-eventstore",
+          "LockServiceConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+          "LockServiceDatabaseId": "1"
         },
-
-        "Exceptionless": {
-          "ApiKey": "UyLkAnpDKLiPBqt59d701BtZwETBX9NedSwnTdQR",
-          "ServerUrl": "http://exception-console.hicoin.io"
+        "MongoDb": {
+          "ConnectionString": "mongodb://hicoin:hicoindev*!*@ip-172-20-43-201.ap-northeast-1.compute.internal:31000/hicoin-subscription?maxPoolSize=200",
+          "DatabaseName": "hicoin-subscription"
+        },
+        "Redis": {
+          "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+          "DatabaseId": "1"
         }
+      },
+
+      "RabbitMq": {
+        "Host": "rabbitmq",
+        "Password": "hicoin*rabbitmq*dev*!*",
+        "Port": "5672",
+        "UserName": "hicoin",
+        "VirtualHost": "/"
+      },
+
+      "Exceptionless": {
+        "ApiKey": "UyLkAnpDKLiPBqt59d701BtZwETBX9NedSwnTdQR",
+        "ServerUrl": "http://exception-console.hicoin.io"
+      }
     }
+
 
 ---
   
