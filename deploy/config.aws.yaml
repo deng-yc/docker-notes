@@ -272,13 +272,14 @@ metadata:
 data:
   appsettings.json: |
     {
-      "Appsetings": {
+      "Appsetings": { 
+        "WebSearchKeywords": "cryptocurrency",
+        "VideoSearchKeywords": "news today",
         "GoogleApiKey": "AIzaSyCriKjZiR3JQfUVdCHdr7UbmYne87DXlyg",
         "SearchEngineId": "005122415579583925549:8ohmhkyjzbe",
         "WebFetchCount": 100,
         "VideoFetchCount": 100,
         "FetchInterVal": 6, 
-        "UnionKeywords": "cryptocurrency",
         "CmsRestUrl": "http://hicoin-cms-api:5001",
         "AuthorityUrl": "http://identity.hicoin.io",
         "CoinsUrl": "http://hicoin-subscription-manager:5800/1/markets/coins"
@@ -286,6 +287,21 @@ data:
     }
 
   
+---
 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hicoin-ccdatawebapi-config
+data:
+  appsettings.json: |
+    {
+      "Appsetings": {
+        "Redis": {
+          "ConnectionString": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+          "DatabaseId": "3"
+        }
+      }
+    }
 
     
