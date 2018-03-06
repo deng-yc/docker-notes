@@ -1,0 +1,67 @@
+#-------------Jenkins Deployment 部署jenkins配置--------------#
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  name: highcharts-export
+  namespace: default
+  labels:
+    k8s-app: highcharts-export
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: highcharts-export
+  template:
+    metadata:
+      labels:
+        k8s-app: highcharts-export
+    spec:
+      containers:
+      - name: highcharts-export
+        image: dengyc/highcharts-export-server
+        imagePullPolicy: Always
+        env:
+        - name: ACCEPT_HIGHCHARTS_LICENSE
+          value: "yes"
+        ports:
+        - containerPort: 8080
+        tty: true 
+---
+#-------------Jenkins Service 部署jenkins服务--------------#
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: highcharts-export
+  name: highcharts-export
+  namespace: default
+  annotations:
+    prometheus.io/scrape: 'true'
+spec:
+  ports:
+    - port: 8080
+      name: highcharts-export
+      targetPort: 8080   
+  selector:
+    k8s-app: highcharts-export
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: highcharts-ingress
+  namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internal
+spec:
+  rules:
+  - host: img-ex.hicoin.io	
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: highcharts-export
+          servicePort: 8080
+
