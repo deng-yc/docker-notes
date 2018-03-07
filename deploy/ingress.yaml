@@ -143,6 +143,12 @@ metadata:
   namespace: kube-system
 spec:
   rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: traefik-web-ui
+          servicePort: web
   - host: k8s-ing.hicoin.io
     http:
       paths:

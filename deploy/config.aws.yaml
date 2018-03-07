@@ -167,7 +167,9 @@ data:
   appsettings.json: |
     {
       "Appsetings": {
-        "RedisConnStr": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",
+        "RedisConnStr": "hicoin-redis-1.jcapth.ng.0001.apne1.cache.amazonaws.com:6379,keepAlive=60,abortConnect=false,connectTimeout=5000,syncTimeout=5000",        
+        "SpiderRetryInterval": 2,
+        "MaxOnceSubQuantity": 2000
       },    
       "RabbitMq": {
         "Host": "rabbitmq",
