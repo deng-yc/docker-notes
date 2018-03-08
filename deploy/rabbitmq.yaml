@@ -63,6 +63,8 @@ spec:
       labels:
         app: rabbitmq
     spec:
+      nodeSelector:
+         kops.k8s.io/instancegroup: nodes-processor-1
       containers:
       - name: rabbitmq
         image: rabbitmq:3.7.3-management-alpine
