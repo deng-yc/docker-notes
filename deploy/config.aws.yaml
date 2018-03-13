@@ -276,7 +276,7 @@ data:
     {
       "Appsetings": { 
         "WebSearchKeywords": "cryptocurrency",
-        "VideoSearchKeywords": "news today",
+        "VideoSearchKeywords": "news today cryptocurrency",
         "GoogleApiKey": "AIzaSyCriKjZiR3JQfUVdCHdr7UbmYne87DXlyg",
         "SearchEngineId": "005122415579583925549:8ohmhkyjzbe",
         "WebFetchCount": 100,
