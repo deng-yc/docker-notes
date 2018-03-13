@@ -277,14 +277,14 @@ data:
       "Appsetings": { 
         "WebSearchKeywords": "cryptocurrency",
         "VideoSearchKeywords": "news today cryptocurrency",
-        "GoogleApiKey": "AIzaSyCriKjZiR3JQfUVdCHdr7UbmYne87DXlyg",
+        "GoogleApiKey": "AIzaSyCRav21fLmyngKGNvzFOri2dx1Ysq2-0f0",
         "SearchEngineId": "005122415579583925549:8ohmhkyjzbe",
         "WebFetchCount": 100,
         "VideoFetchCount": 100,
         "FetchInterVal": 6, 
         "CmsRestUrl": "http://hicoin-cms-api:5001",
         "AuthorityUrl": "http://identity.hicoin.io",
-        "CoinsUrl": "http://hicoin-subscription-manager:5800/1/markets/coins"
+        "CoinsUrl": "http://hicoin-ccdatawebapi:5700/1/markets/coins"
       }
     }
 
