@@ -280,11 +280,12 @@ data:
         "GoogleApiKey": "AIzaSyCRav21fLmyngKGNvzFOri2dx1Ysq2-0f0",
         "SearchEngineId": "005122415579583925549:8ohmhkyjzbe",
         "WebFetchCount": 100,
+        "WebSearchInterval": "60",
         "VideoFetchCount": 100,
         "FetchInterVal": 6, 
         "CmsRestUrl": "http://hicoin-cms-api:5001",
         "AuthorityUrl": "http://identity.hicoin.io",
-        "CoinsUrl": "http://hicoin-ccdatawebapi:5700/1/markets/coins"
+        "CoinsUrl": "https://min-api.cryptocompare.com/data/top/totalvol?limit=100&tsym=USD"
       }
     }
 
