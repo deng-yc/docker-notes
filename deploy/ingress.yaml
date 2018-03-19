@@ -147,6 +147,10 @@ spec:
       paths:
       - path: /
         backend:
+          serviceName: hicoin-home
+          servicePort: 3000
+      - path: /ping
+        backend:
           serviceName: traefik-web-ui
           servicePort: web
   - host: k8s-ing.hicoin.io
